@@ -1,9 +1,10 @@
 import math
-
+#classe che definisce metodi dei punti 
 class Punto:
+    #variabili statiche, quindi il loro valore è uguale per tutte le istanze della classe punto
     baricentrox = 1
     baricentroy = 1
-
+    #costruttore
     def __init__(self, x=0.0, y=0.0):
         self.x = x
         self.y = y
