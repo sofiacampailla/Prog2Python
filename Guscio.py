@@ -52,54 +52,36 @@ def ordl(L):
 L=ordl(lista_punti)
 
 #metodo per individuare l'orientamento di una terna di punti
-# def graham_scan(lista_punti):
 def orient(a, b, c):
     return (c.x-a.x)*(b.y-a.y)-(c.y-a.y)*(b.x-a.x)
+
   #metodo per controllare se i punti della lista possono appartenere al guscio convesso
   # def checkLista(L):
   #   if len(L)==3:
   #     return L
   
-def guscioconv(L):
-		guscio = []
-		guscio.append(L[0])
-		for p in L:
-			guscio.append(p)
-			while len(guscio)>2 and orient(guscio[-3],guscio[-2],guscio[-1])<0:
-				guscio.pop(-2)
-		return guscio
-guscioconv(L)
-  # orientati = ordl(lista_punti)
-  # for p in orientati:
-  #   # if we turn clockwise to reach this point, pop the last point from the stack, else, append this point to it.
-  #   while len(guscio) > 1 and not orient(guscio[-2], guscio[-1], p):
-  #     guscio.pop()
-  #   guscio.append(p)ù
-  # # the stack is now a representation of the convex guscio, return it.
-  # return guscio
-  
-  # while not orient(L[1],L[2],L[3]):
-  #   L[:]
-  #   L.remove(L[2])
-  #   checkLista(L)
-  # return L
-  # for i in L[:]:
-  #   if orient(i,L[L.index(i)+1],L[L.index(i)+2]):
-  #     continue
-  #   else:
-  #     L.remove(L[L.index(i)+1])
-  # return L
+# def guscioconv(L):
+# 		guscio = []
+# 		guscio.append(L[0])
+# 		for p in L:
+# 			guscio.append(p)
+# 			while len(guscio) > 2 and orient(guscio[-3],guscio[-2],guscio[-1])<0:
+# 				guscio.pop(-2)
+# 		return guscio
+# guscioconv(L)
 
-  # return L
-  # while not orient(i,L[L.index(i)+1],L[L.index(i)+2]):
-  #   del L[L.index(i)+1]
-# print (orient(L[0],L[3],L[5]))
-# L=checkLista(L)
+def guscioconv(lista_punti):
+  guscio = []
+  orientati = ordl(lista_punti)
+  for p in orientati:
+    # if we turn clockwise to reach this point, pop the last point from the stack, else, append this point to it.
+    while len(guscio) > 1 and orient(guscio[-2], guscio[-1], p)>=0:
+      guscio.pop()
+    guscio.append(p)
+  # the stack is now a representation of the convex guscio, return it.
+  return guscio
 
-
-
-
-
+L=guscioconv(L) 
 
 #file di scrittura
 file_output = open(sys.argv[2],'w')
